@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t <your-dockerhub-username>/mydockerapp:latest .'
+                sh 'docker build -t skk4545/mydockerapp:latest .'
             }
         }
         stage('Push Docker Image') {
@@ -25,7 +25,7 @@ pipeline {
                     // Login to Docker Hub
                     sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                     // Push the Docker image
-                    sh 'docker push <your-dockerhub-username>/mydockerapp:latest'
+                    sh 'docker push skk4545/mydockerapp:latest'
                 }
             }
         }
