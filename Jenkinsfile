@@ -8,8 +8,8 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    // Checkout from GitHub using the credential
                     echo "Checking out the repository..."
+                    // Use the GitHub credentials
                     git url: 'https://github.com/Sumit454545/docker-app-pipeline.git',
                         credentialsId: 'github-token', // Use your actual GitHub credentials ID
                         branch: 'main' // Specify the branch if necessary
@@ -20,7 +20,6 @@ pipeline {
             steps {
                 script {
                     echo "Building the project with Maven..."
-                    // Build the project
                     sh 'mvn clean package'
                 }
             }
@@ -29,7 +28,6 @@ pipeline {
             steps {
                 script {
                     echo "Building the Docker image..."
-                    // Build Docker image
                     sh 'docker build -t skk4545/mydockerapp:latest .'
                 }
             }
@@ -38,10 +36,8 @@ pipeline {
             steps {
                 script {
                     echo "Logging into Docker Hub..."
-                    // Login to Docker Hub
                     sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                     echo "Pushing the Docker image to Docker Hub..."
-                    // Push the Docker image
                     sh 'docker push skk4545/mydockerapp:latest'
                 }
             }
