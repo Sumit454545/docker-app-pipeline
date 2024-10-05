@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/<your-username>/my-docker-app.git'
+                git 'https://github.com/Sumit454545/docker-app-pipeline.git'
             }
         }
         stage('Build') {
